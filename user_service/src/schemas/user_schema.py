@@ -1,7 +1,6 @@
-from pydantic import BaseModel, EmailStr, UUID4
-from typing import List, Optional, Any
-from datetime import date, time, datetime
-from enum import Enum
+from pydantic import BaseModel, EmailStr
+from typing import List, Optional
+from datetime import date, datetime
 
 class UserBase(BaseModel):
     name: str

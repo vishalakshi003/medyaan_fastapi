@@ -16,3 +16,4 @@ class CustomUser(Base):
     birth_date = Column(Date, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    is_admin=Column(Boolean,default=False)
