@@ -7,13 +7,12 @@ class RoleMaster(Base):
     id = Column(Integer,primary_key=True,index=True)
     name = Column(String,nullable=False)
 
-    roles = relationship("RoleMapping",back_populates="role")
+    role_mappings = relationship("RoleMapping", back_populates="role")
 class RoleMapping(Base):
     __tablename__ = "rolemapping"
     id = Column(Integer,primary_key=True,index=True)
     userid = Column(Integer,ForeignKey("users.id"))
     roleid = Column(Integer,ForeignKey("rolemaster.id"))
 
-    user = relationship("CustomUser",back_populates="users")
-    role = relationship("RoleMaster",back_populates="roles")
-
+    user = relationship("CustomUser", back_populates="role_mappings")
+    role = relationship("RoleMaster", back_populates="role_mappings")

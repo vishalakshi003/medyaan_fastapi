@@ -20,4 +20,4 @@ class CustomUser(Base):
     is_admin=Column(Boolean,default=False)
     is_archived=Column(Boolean,default=False)
     
-    users = relationship("RoleMapping",back_populates="role")
+    role_mappings = relationship("RoleMapping", back_populates="user")
