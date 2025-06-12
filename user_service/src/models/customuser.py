@@ -1,6 +1,7 @@
 from datetime import datetime
 from sqlalchemy import ARRAY, Column, Date, DateTime,Integer,String,Float,Boolean,Text,JSON
 from ..core.database import Base
+from sqlalchemy.orm import relationship
 class CustomUser(Base):
     __tablename__ = "users"
 
@@ -18,3 +19,5 @@ class CustomUser(Base):
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     is_admin=Column(Boolean,default=False)
     is_archived=Column(Boolean,default=False)
+    
+    users = relationship("RoleMapping",back_populates="role")
