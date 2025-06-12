@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from src.core.config import Config
 from sqlalchemy.ext.asyncio import create_async_engine,AsyncSession
 
-engine = create_engine(Config.DATABASE_URL)
+engine = create_engine("postgresql://postgres.litmwhoslkfocmnsulcb:MedyaanFastapi@aws-0-ap-south-1.pooler.supabase.com:5432/postgres")
 
 SessionLocal = sessionmaker(autocommit=False,autoflush=False,bind=engine)
 
