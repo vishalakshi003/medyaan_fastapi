@@ -4,6 +4,6 @@ import os
 load_dotenv()
 
 class Config:
-    DATABASE_URL=os.getenv("DATABASE_URL")
+    DATABASE_URL=os.getenv("DATABASEURL")
     
 Base=declarative_base()

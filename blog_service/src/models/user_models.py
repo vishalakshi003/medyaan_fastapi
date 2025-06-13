@@ -1,4 +1,4 @@
-from src.core.database import Base
+from src.core.config import Base
 from sqlalchemy import JSON, Column,String,Integer,DateTime,Boolean,UniqueConstraint,ForeignKey
 from sqlalchemy.sql import func#it will use to indicate current time 
 from sqlalchemy.dialects.postgresql import ARRAY
@@ -20,6 +20,7 @@ class BlogCustomUser(Base):
     __table_args__=(UniqueConstraint("email","mobile_number",name="unique_users")),
     
     rolemapping=relationship("BlogRoleMapping",back_populates="users")
+    bloguser = relationship("Blog",back_populates="user")
 
 
 
