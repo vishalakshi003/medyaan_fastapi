@@ -23,7 +23,7 @@ class Likes(Base):
     userid = Column(Integer,ForeignKey("custom_user.id"))
     blogid = Column(Integer,ForeignKey("blog.id"))
     
-    user = relationship("BlogCustomUser",back_populates="bloguser")
+    user = relationship("BlogCustomUser",back_populates="likeuser")
     blog = relationship("Blog",back_populates="like")
     
     

@@ -21,6 +21,7 @@ class BlogCustomUser(Base):
     
     rolemapping=relationship("BlogRoleMapping",back_populates="users")
     bloguser = relationship("Blog",back_populates="user")
+    likeuser = relationship("Likes",back_populates="user")
 
 
 
