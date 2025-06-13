@@ -45,3 +45,25 @@ async def login_user(request:LoginRequest,db:SessionDeps):
                     "email":users.email,
                 },})
     return token
+
+
+@user_router.get('/users')
+async def get_user_details(user_id:int,db:SessionDeps):
+    result = await db.execute(select(BlogCustomUser).where(BlogCustomUser.id == user_id))
+    user = result.scalars().first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+
+    roles = []
+    for mapping in user.rolemapping:
+        if mapping.roles:
+            roles.append(mapping.roles.name)
+    return {
+        "id": user.id,
+        "user_name": user.user_name,
+        "email": user.email,
+        "mobile_number": user.mobile_number,
+        "id_proof": user.id_proof,
+        "roles": roles
+    }

@@ -19,7 +19,7 @@ class BlogCustomUser(Base):
     is_active=Column(Boolean,default=True)
     __table_args__=(UniqueConstraint("email","mobile_number",name="unique_users")),
     
-    rolemapping=relationship("BlogRoleMapping",back_populates="users")
+    rolemapping=relationship("BlogRoleMapping",back_populates="users",lazy="selectin" )
     bloguser = relationship("Blog",back_populates="user")
     likeuser = relationship("Likes",back_populates="user")
 
@@ -33,7 +33,7 @@ class BlogRoleMaster(Base):
     created_at=Column(DateTime,server_default=func.now(),nullable=False)
     modified_at=Column(DateTime,server_default=func.now(),onupdate=func.now(),nullable=False)
     is_active=Column(Boolean,default=True)   
-    rolemapping=relationship("BlogRoleMapping",back_populates="roles")
+    rolemapping=relationship("BlogRoleMapping",back_populates="roles",lazy="selectin" )
 
 
 
@@ -43,5 +43,5 @@ class BlogRoleMapping(Base):
     user_id=Column(Integer,ForeignKey("custom_user.id"))
     role_id=Column(Integer,ForeignKey("role_master.id"))
 
-    users=relationship("BlogCustomUser",back_populates="rolemapping")
-    roles=relationship("BlogRoleMaster",back_populates="rolemapping")
+    users=relationship("BlogCustomUser",back_populates="rolemapping",lazy="selectin" )
+    roles=relationship("BlogRoleMaster",back_populates="rolemapping",lazy="selectin" )
