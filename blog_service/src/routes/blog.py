@@ -29,4 +29,26 @@ async def create_blog(data:BlogCreate,db:AsyncSession=Depends(get_async_db)):
     await db.refresh(blog_data)
     return blog_data
 
-    
+@blog_router.get('/get_user_with_blogs')
+async def get_user_with_posts(db:AsyncSession=Depends(get_async_db)):
+    try:
+        data = (await db.execute(select(BlogCustomUser).options(selectinload(BlogCustomUser.bloguser)))).scalars().all()
+        
+        details = []
+        for d in data:
+            detail = []
+            for b in d.bloguser:
+                detail.append({
+                    "blog_id":b.id,
+                    "blog_name":b.title
+                })
+            details.append({
+                "id":d.id,
+                "name":d.user_name,
+                "mobile":d.mobile_number,
+                "blog_details":detail
+            })
+    except Exception as e:
+        return {"error":str(e)}
+        
+    return details
