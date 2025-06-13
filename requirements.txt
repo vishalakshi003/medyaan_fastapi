@@ -2,3 +2,7 @@ fastapi[all]
 alembic
 sqlalchemy
 psycopg2-binary --only-binary psycopg2-binary
+alembic
+asyncpg
+PyJWT
+passlib

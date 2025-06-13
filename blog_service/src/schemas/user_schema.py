@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import Optional,List,Dict,Any
 class UserBase(BaseModel):
-    name:str
+    user_name:str
     email:str
     mobile_number:str
     id_proof: List[Dict[str, Any]]

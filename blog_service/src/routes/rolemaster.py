@@ -2,24 +2,24 @@ from fastapi import APIRouter,Depends
 from sqlalchemy.future import select
 from src.schemas.user_schema import CreateRole
 from sqlalchemy.ext.asyncio import AsyncSession
-from src.core.database import async_get_db
-from src.models.user_models import RoleMaster
+from src.core.database import get_async_db
+from src.models.user_models import BlogRoleMaster
 from typing import Optional
 role_router=APIRouter()
 
 @role_router.post("/role",status_code=201)
-async def create_role(data:CreateRole,db:AsyncSession=Depends(async_get_db)):
-    new_role=RoleMaster(**data.model_dump())
+async def create_role(data:CreateRole,db:AsyncSession=Depends(get_async_db)):
+    new_role=BlogRoleMaster(**data.model_dump())
     db.add(new_role)
     await db.commit()
     await db.refresh(new_role)
     return new_role
 @role_router.get("/role")
-async def get_role(id:Optional[int]=None,db:AsyncSession=Depends(async_get_db)):
+async def get_role(id:Optional[int]=None,db:AsyncSession=Depends(get_async_db)):
     if id:
-        results=await db.execute(select(RoleMaster).where(RoleMaster.id==id))
+        results=await db.execute(select(BlogRoleMaster).where(BlogRoleMaster.id==id))
     else:
-        results=await db.execute(select(RoleMaster))
+        results=await db.execute(select(BlogRoleMaster))
     roles = results.scalars().all()
 
     return roles
