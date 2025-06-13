@@ -8,6 +8,7 @@ from sqlalchemy.orm import relationship
 class BlogCustomUser(Base):
     __tablename__="custom_user"
     id=Column(Integer,primary_key=True)
+    user_name=Column(String,nullable=False)
     email=Column(String,unique=True,nullable=False)
     mobile_number=Column(String(32),nullable=False,unique=True,index=True)
     password=Column(String,nullable=True) 
