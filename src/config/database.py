@@ -1,3 +1,4 @@
+from fastapi import Depends
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 from config.settings import Config
@@ -9,4 +10,7 @@ AsyncSessionLocal = sessionmaker(engine, class_=AsyncSession, expire_on_commit=F
 
 async def get_db():
     async with AsyncSessionLocal() as session:
-        yield {"db":session}
+        yield session
+
+async def get_context(db: AsyncSession = Depends(get_db())):
+    return {"db": db}

@@ -7,11 +7,11 @@ from strawberry.types import Info
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.utils.password import generate_access_token, password_context
 
-async def fetch_users() -> list[UserType]:
-    async for db in get_db():
-        result = await db.execute(select(User))
-        users = result.scalars().all()
-        return [UserType(id=u.id, name=u.name, email=u.email) for u in users]
+async def fetch_users(info:Info) -> list[User_details]:
+    db:AsyncSession=info.context["db"]
+    result = await db.execute(select(CustomUser))
+    users = result.scalars().all()
+    return [User_details(id=u.id, name=u.name, email=u.email) for u in users]
 
 async def add_user(data,info) -> User_details:
     try:
