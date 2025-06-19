@@ -1,10 +1,8 @@
-from pydantic import BaseSettings
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
-class Settings(BaseSettings):
-    app_name: str = "GraphQL App"
-    database_url: str
-
-    class Config:
-        env_file = ".env"
-
-settings = Settings()
+class Config():
+    DATABASE_URL=os.getenv("DATABASE_URL")
+    JWT_ALGORITHM=os.getenv("JWT_ALGORITHM")
+    JWT_SECRET=os.getenv("JWT_SECRET")
