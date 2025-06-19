@@ -4,3 +4,4 @@ sqlalchemy
 psycopg2-binary --only-binary psycopg2-binary
 passlib
 PyJWT
+strawberry-graphql[fastapi]
