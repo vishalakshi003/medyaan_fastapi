@@ -13,10 +13,10 @@ class User_details:
     mobile_number:str
 
 @strawberry.input
-class LoginReq:
-    mobile_no:str
+class LoginRequest:
+    mobile_number:str
     password:str
 @strawberry.type
-class TokenRes:
+class TokenResponse:
     status:str
     token:str
