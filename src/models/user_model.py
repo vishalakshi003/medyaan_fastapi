@@ -1,5 +1,5 @@
 from sqlalchemy import Boolean, Column, DateTime, Integer, String, UniqueConstraint
-from src.config.database import Base
+from config.database import Base
 from sqlalchemy.sql import func
 
 class CustomUser(Base):

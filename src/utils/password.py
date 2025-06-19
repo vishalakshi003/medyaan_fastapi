@@ -3,7 +3,7 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from passlib.context import CryptContext
 from datetime import timedelta,timezone,datetime
 import jwt
-from src.config.database import Config
+from config.database import Config
 from fastapi.security import OAuth2PasswordBearer
 password_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
 

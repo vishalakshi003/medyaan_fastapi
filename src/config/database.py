@@ -12,5 +12,5 @@ async def get_db():
     async with AsyncSessionLocal() as session:
         yield session
 
-async def get_context(db: AsyncSession = Depends(get_db())):
+async def get_context(db: AsyncSession = Depends(get_db)):
     return {"db": db}

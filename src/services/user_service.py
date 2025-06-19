@@ -5,9 +5,11 @@ from config.database import get_db
 from sqlalchemy.future import select
 from strawberry.types import Info
 from sqlalchemy.ext.asyncio import AsyncSession
-from src.utils.password import generate_access_token, password_context
+from utils.password import generate_access_token, password_context
+from typing import List
 
-async def fetch_users(info:Info) -> list[User_details]:
+
+async def fetch_users(info:Info) -> List[User_details]:
     db:AsyncSession=info.context["db"]
     result = await db.execute(select(CustomUser))
     users = result.scalars().all()

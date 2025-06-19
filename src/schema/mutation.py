@@ -1,6 +1,6 @@
 import strawberry
 from resolvers.user_resolver import create_user,login_api
-from schema.user_schema import CreateUserInput, User_details,TokenRes
+from schema.user_schema import User_details,TokenRes
 
 @strawberry.type
 class Mutation:
