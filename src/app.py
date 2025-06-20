@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from strawberry.fastapi import GraphQLRouter
-from schema.query import Query
-from schema.mutation import Mutation
+from api.graphql.query import Query
+from api.graphql.mutation import Mutation
 import strawberry
 from config.database import get_context
 
