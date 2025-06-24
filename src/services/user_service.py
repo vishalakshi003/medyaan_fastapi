@@ -12,8 +12,9 @@ from typing import List
 async def fetch_users(info) -> List[User_details]:
     db:AsyncSession=info.context["db"]
     payload=info.context["user"]
-    if not payload:
-        raise GraphQLError('unauthorized')
+    # if not payload:
+    #     raise GraphQLError('unauthorized')
+
     if payload is not None:
        id = payload["user"]["id"]
        result = await db.execute(select(CustomUser).where(CustomUser.id==id))
